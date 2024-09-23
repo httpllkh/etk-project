@@ -1,0 +1,17 @@
+<svg width="200" height="100" xmlns="http://www.w3.org/2000/svg">
+  <!-- Вода -->
+  <rect x="0" y="60" width="200" height="40" fill="#00bcd4" />
+  <path d="M0 70 Q25 50, 50 70 T100 70 T150 70 T200 70" fill="none" stroke="#fff" stroke-width="3" />
+  
+  <!-- Автомобиль -->
+  <rect x="50" y="30" width="100" height="30" rx="10" ry="10" fill="#ff5722" />
+  <circle cx="70" cy="65" r="10" fill="#424242" />
+  <circle cx="130" cy="65" r="10" fill="#424242" />
+  
+  <!-- Окна автомобиля -->
+  <rect x="60" y="35" width="30" height="15" rx="3" ry="3" fill="#fff" />
+  <rect x="110" y="35" width="30" height="15" rx="3" ry="3" fill="#fff" />
+
+  <!-- Логотип на автомобиле -->
+  <text x="95" y="52" font-size="10" fill="#fff" font-family="Arial" font-weight="bold">Ferry</text>
+</svg>
