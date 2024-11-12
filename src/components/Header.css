@@ -1,0 +1,40 @@
+/* Стили для header */
+.header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    background-color: #FEFEFE;
+    padding: 10px 20px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Стили для логотипа */
+  .header-logo {
+    display: flex;
+    align-items: center;
+    font-weight: bold;
+    font-size: 18px;
+    color: #000;
+  }
+  
+  .header-logo-highlight {
+    color: #4CAF50; /* Цвет зеленого текста */
+    margin-left: 5px;
+  }
+  
+  
+  
+  /* Стили для меню справа */
+  .header-menu {
+    display: flex;
+    align-items: center;
+  }
+  
+  .header-menu span, .header-menu button {
+    margin-left: 15px;
+    font-size: 14px;
+    color: #000;
+    background: none;
+    border: none;
+  }
+  

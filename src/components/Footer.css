@@ -1,0 +1,24 @@
+/* Основные стили футера */
+.footer {
+    display: flex;
+    justify-content: space-between;
+    background-color: rgb(244, 244, 244); /* Темно-фиолетовый фон */
+    color: rgb(0, 0, 0);
+    padding: 20px;
+  }
+  
+  .footer-section {
+    width: 23%;
+  }
+  
+  .footer-section h3 {
+    font-size: 16px;
+    margin-bottom: 10px;
+    font-weight: bold;
+  }
+  
+  .footer-section p {
+    margin: 5px 0;
+    font-size: 14px;
+  }
+  

@@ -1,0 +1,30 @@
+/* Стили для контейнера боковой панели */
+.sidebar-container {
+    width: 100px;
+    height: 100vh;
+    background-color: #365176;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+  }
+  
+  /* Стили для элементов панели */
+  .sidebar-item {
+    margin: 10px 0;
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .sidebar-image {
+    width: 48px;
+    height: 48px;
+  }
+  
+  h4 {
+    margin: 0px;
+  }
+
