@@ -5,6 +5,7 @@
     background-color: rgb(244, 244, 244); /* Темно-фиолетовый фон */
     color: rgb(0, 0, 0);
     padding: 20px;
+    animation: fadeIn 1s ease-in-out;
   }
   
   .footer-section {

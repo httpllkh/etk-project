@@ -9,7 +9,7 @@ const Sidebar = () => {
       <nav>
         <ul>
           <NavLink to="/vehicle" activeClassName="active">
-          <li><p className='active' >Мои ТС</p></li>
+          <li><p className='active'>Мои ТС</p></li>
           </NavLink>
           <NavLink to="/news" activeClassName="active">
           <li><p >Новости</p></li>

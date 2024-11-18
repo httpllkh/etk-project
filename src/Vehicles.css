@@ -1,12 +1,26 @@
 /* Общие стили */
+body {
+  display: block;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  height: 100%; /* Важно */
+}
+
 .body {
   font-family: Arial, sans-serif;
   margin: 0;
   padding: 0;
   display: flex;
+  gap: 20px;
   color: #333;
   background-color: #f8f9fa;
   animation: fadeIn 1s ease-in-out; /* Анимация появления страницы */
+}
+
+.uppermain {
+  display: flex;
+  flex-direction: column;
 }
 
 h1, h2, h3 {
@@ -62,11 +76,13 @@ header {
 }
 
 .news-section, .transport-section {
+  width: 70vw;
   background: #fff;
   padding: 20px;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
   margin-bottom: 20px;
+  margin-left: 20px;
   opacity: 0;
   transform: translateY(20px);
   animation: fadeInUp 0.8s ease-out forwards;
@@ -102,7 +118,7 @@ header {
 .actions {
   display: flex;
   gap: 10px;
-  margin-bottom: 20px;
+  margin: 20px 0px;
 }
 
 .search-bar {
@@ -126,6 +142,8 @@ header {
   border-radius: 5px;
   cursor: pointer;
   transition: background-color 0.3s, transform 0.2s;
+  margin: 0px;
+  font-size: medium;
 }
 
 .btn:hover {
@@ -191,7 +209,7 @@ th {
 
 /* Футер */
 .footer {
-  background-color: var(--primary-color);
+  background-color: #34495e;
   color: #fff;
   padding: 20px 0;
   text-align: center;

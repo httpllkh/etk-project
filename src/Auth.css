@@ -20,9 +20,10 @@ body {
   align-items: center;
 }
 
+
 h1 {
   font-size: 2rem;
-  color: black;
+  color: rgb(255, 255, 255);
   margin-bottom: 2rem;
 }
 

@@ -19,25 +19,27 @@ const Vehicle = () => {
 
 
   useEffect(() => {
-    fetch('http://91.203.10.130:2783/portal/hs/ksapi/getTS', {
-      method: 'GET'
-      // headers: {
-      //     // 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`, 
-      //     // "Access-Control-Allow-Origin": '*',
-      //     // mode: "no-cors",
-      //     'Content-Type': 'application/json'
-      // }
-  }) 
-    .then(response => response.json())
-      .then(data => {
-        setVehicles(data);
-        setLoading(false);
-        console.log(vehicles)
-      })
-      .catch(error => {
-        console.error('Ошибка при загрузке данных:', error);
-        setLoading(false);
-      });
+    console.log(localStorage.getItem('jwtToken'))
+    const fetchData = async () => {
+      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/getTS', {
+        method: 'POST',
+        headers: {
+            'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`, 
+            'Content-Type': 'application/json'
+        }
+    })
+      .then(response => response.json())
+        .then(data => {
+          setVehicles(data);
+          setLoading(false);
+          console.log(vehicles)
+        })
+        .catch(error => {
+          console.error('Ошибка при загрузке данных:', error);
+          setLoading(false);
+        });
+    }
+    fetchData()
   }, []);
 
   const openAddModal = () => setAddModalActive(true);
@@ -50,6 +52,7 @@ const Vehicle = () => {
 
 
   return (
+    <div className="uppermain">
     <div className="body">
       <Sidebar />
       <div className="main">
@@ -98,6 +101,7 @@ const Vehicle = () => {
               </tr>
             ))
           )}
+
         </tbody>
       </table>
       </section>
@@ -115,9 +119,13 @@ const Vehicle = () => {
       )}
 
 
-      <Footer />
+
     </div>
+
     </div>
+    <Footer />
+    </div>
+
 
 
     
