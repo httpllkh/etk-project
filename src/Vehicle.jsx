@@ -50,52 +50,33 @@ const Vehicle = () => {
 
 
   return (
-    <div className="main">
-      <Header />
-      <div className="wrapper">
+    <div className="body">
       <Sidebar />
-    <div className="vehicles-container">
-      <h1>Последние новости</h1>
-      <div class="news-block">
+      <div className="main">
+      <Header />
+
+      <section className='news-section'>
+      <h2>Последние новости</h2>
         <div class="news-item">
-            <a>Заголовок новости 1</a>
+            <h3>Заголовок новости 1</h3>
             <p>Краткое описание первой новости...</p>
             <span class="date">05.11.2024</span>
         </div>
         <div class="news-item">
-            <a>Заголовок новости 2</a>
+            <h3>Заголовок новости 2</h3>
             <p>Краткое описание второй новости...</p>
             <span class="date">04.11.2024</span>
         </div>
-        {/* <div class="news-item">
-            <a>Заголовок новости 3</a>
-            <p>Краткое описание второй новости...</p>
-            <span class="date">04.11.2024</span>
-        </div>
-        <div class="news-item">
-            <a>Заголовок новости 4</a>
-            <p>Краткое описание второй новости...</p>
-            <span class="date">04.11.2024</span>
-        </div>
-        <div class="news-item">
-            <a>Заголовок новости 5</a>
-            <p>Краткое описание второй новости...</p>
-            <span class="date">04.11.2024</span>
-        </div>
-        <div class="news-item">
-            <a>Заголовок новости 6</a>
-            <p>Краткое описание второй новости...</p>
-            <span class="date">04.11.2024</span>
-        </div> */}
-    </div>
-      <h1>Транспортные средства</h1>
-      <div className="controls">
-        <button onClick={openAddModal}>Создать</button>
-        <input type="text" placeholder="Поиск..." />
-        <button onClick={() => setActModalActive(true)}>Получить акт сверки</button>
-        <button onClick={() => setInvoiceModalActive(true)}>Получить счет на оплату</button>
+      </section>
+    <section className='transport-section'>
+      <h2>Транспортные средства</h2>
+      <div className="actions">
+        <button className='btn' onClick={openAddModal}>Создать</button>
+        <input type="text" placeholder="Поиск..." className='search-bar' />
+        <button className='btn' onClick={() => setActModalActive(true)}>Получить акт сверки</button>
+        <button className='btn' onClick={() => setInvoiceModalActive(true)}>Получить счет на оплату</button>
       </div>
-      <table className="vehicles-table">
+      <table>
         <thead>
           <tr>
             <th>Госномер</th>
@@ -114,13 +95,13 @@ const Vehicle = () => {
                 <td>{vehicle.gosnumber}</td>
                 <td>{vehicle.name}</td>
                 <td>{vehicle.active ? 'Активен' : 'Отключен'}</td>
-
               </tr>
             ))
           )}
         </tbody>
       </table>
-      </div>
+      </section>
+
 
       {addModalActive && (
         <AddModal active={addModalActive} setActive={setAddModalActive}/>
@@ -132,10 +113,14 @@ const Vehicle = () => {
       {actModalActive && (
         <ActModal active={actModalActive} setActive={setActModalActive}/>
       )}
-    </div>
+
 
       <Footer />
     </div>
+    </div>
+
+
+    
   );
 };
 

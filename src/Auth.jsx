@@ -1,133 +1,3 @@
-// import React, { useState } from 'react';
-// import './Auth.css'; 
-// import CryptoJS from 'crypto-js'; 
-// const Auth = () => {
-//   const [email, setEmail] = useState('');
-//   const [password, setPassword] = useState('');
-//   const [errorMessage, setErrorMessage] = useState('');
-
-//   const handleLogin = (e) => {
-//     e.preventDefault();
-
-//     const hashedPassword = password;
-
-//     const loginData = {
-//       email: email,
-//       password: hashedPassword,
-//     };
-    
-
-//     fetch('http://91.203.10.130:2783/portal/hs/ksapi/AUTH', { 
-//       method: 'POST',
-//       headers: {
-//         'Content-Type': 'application/json',
-//       },
-//       body: JSON.stringify(loginData),
-//     })
-//       .then(response => response.json())
-//       .then(data => {
-//         console.log(data)
-//         if (data.token) {
-//           localStorage.setItem('jwtToken', data.token);
-//           console.log('Авторизация успешна, токен сохранён');
-//         } else {
-//           setErrorMessage('Неверный логин или пароль');
-//         }
-//       })
-//       .catch(error => {
-//         console.error('Ошибка при авторизации:', error);
-//         setErrorMessage('Ошибка при авторизации');
-//       });
-//   };
-
-//   return (
-//     <div className="auth-container">
-//       <h2>Авторизация</h2>
-//       <form onSubmit={handleLogin}>
-//         <div className="form-group">
-//           <label>Email:</label>
-//           <input
-//             type="email"
-//             value={email}
-//             onChange={(e) => setEmail(e.target.value)}
-//             placeholder="Введите email"
-//             required
-//           />
-//         </div>
-//         <div className="form-group">
-//           <label>Пароль:</label>
-//           <input
-//             type="password"
-//             value={password}
-//             onChange={(e) => setPassword(e.target.value)}
-//             placeholder="Введите пароль"
-//             required
-//           />
-//         </div>
-//         <button type="submit">Войти</button>
-//       </form>
-//       {errorMessage && <p className="error">{errorMessage}</p>}
-//     </div>
-//   );
-// };
-
-// export default Auth;
-
-
-
-// import React, { useEffect, useState } from 'react';
-// import './Auth.css'; // Импортируем стили
-
-// const Auth = () => {
-//     const [isModalOpen, setIsModalOpen] = useState(false);
-
-    
-//     const handleOpenModal = () => {
-//         setIsModalOpen(true);
-//     };
-
-//     const handleCloseModal = () => {
-//         setIsModalOpen(false);
-//     };
-
-//     useEffect(() => {
-//         console.log("Произошел рендер")
-//     })
-
-//     return (
-//         <div className="container">
-//             <div>
-//                 <h1>ООО “Ерамакская Транспортная Компания”</h1>
-//                 <button onClick={handleOpenModal}>Авторизоваться</button>
-//                 <button>Подробнее</button>
-//             </div>
-
-//             {isModalOpen && (
-//                 <div className="modal">
-//                     <div className="modal-content">
-//                         <span className="close" onClick={handleCloseModal}>&times;</span>
-//                         <h2>Войти</h2>
-//                         <form>
-//                             <div className="form-group">
-//                                 <label>Email:</label>
-//                                 <input type="email" placeholder="Введите email" required />
-//                             </div>
-//                             <div className="form-group">
-//                                 <label>Пароль:</label>
-//                                 <input type="password" placeholder="Введите пароль" required />
-//                             </div>
-//                             <button type="submit" className="submit-btn">Войти</button>
-//                         </form>
-//                     </div>
-//                 </div>
-//             )}
-//         </div>
-//     );
-// };
-
-// export default Auth;
-
-
 import React, { useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
@@ -139,6 +9,13 @@ const Auth = () => {
     const [email, setEmail] = useState('');
     const [password, setPassword] = useState('');
     const [errorMessage, setErrorMessage] = useState('');
+    // Для регистрации
+    const [regEmail, setRegEmail] = useState('')
+    const [regInn, setRegInn] = useState('')
+    const [regKpp, setRegKpp] = useState('')
+    const [regName, setRegName] = useState('')
+    const [regFio, setRegFio] = useState('')
+    const [regNumber, setRegNumber] = useState('')
     const navigate = useNavigate();
     const { login } = useAuth();
 
@@ -173,12 +50,12 @@ const Auth = () => {
         fetch('http://91.203.10.130:2783/portal/hs/ksapi/NEWREG', {
             method: "POST",
             body: JSON.stringify({
-                email: "email@mail.ru",
-                inn: "888989898",
-                kpp: "8948394",
-                name: "ООО что-что",
-                fio: "Васильев Оскар Абдувалиевич",
-                phonenumber: "89825159755"
+                email: regEmail,
+                inn: regInn,
+                kpp: regKpp,
+                name: regName,
+                fio: regFio,
+                phonenumber: regNumber
             })
         }) 
     .then(response => response.json())
@@ -255,29 +132,29 @@ const Auth = () => {
                         <form onSubmit={handleSubmit}>
                             <div className="form-group">
                                 <label>Email:</label>
-                                <input type="email" placeholder="Введите email" required />
+                                <input type="email" placeholder="Введите email" onChange={(e) => setRegEmail(e.target.value) } required />
                             </div>
                             <div className="form-group">
                                 <label>ИНН</label>
-                                <input type="text" placeholder="Введите ИНН" required />
+                                <input type="text" placeholder="Введите ИНН" onChange={(e) => setRegInn(e.target.value) } required />
                             </div>
 
                             <div className="form-group">
                                 <label>КПП</label>
-                                <input type="text" placeholder="Введите КПП" required />
+                                <input type="text" placeholder="Введите КПП" onChange={(e) => setRegKpp(e.target.value) } required />
                             </div>
                             <div className="form-group">
                                 <label>Наименование организации</label>
-                                <input type="text" placeholder="Введите наименование" required />
+                                <input type="text" placeholder="Введите наименование" onChange={(e) => setRegName(e.target.value) } required />
                             </div>
                             <div className="form-group">
                                 <label>ФИО контакного лица</label>
-                                <input type="text" placeholder="Введите ФИО" required />
+                                <input type="text" placeholder="Введите ФИО" onChange={(e) => setRegFio(e.target.value) } required />
                             </div>
 
                             <div className="form-group">
                                 <label>Номер телефона</label>
-                                <input type="text" placeholder="Введите номер" required />
+                                <input type="text" placeholder="Введите номер" onChange={(e) => setRegNumber(e.target.value) } required />
                             </div>
                             <button type="submit" className="submit-btn" onClick={regSubmit}>Отправить</button>
                         </form>
