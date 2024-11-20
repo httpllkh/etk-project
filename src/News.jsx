@@ -1,30 +1,66 @@
-import Sidebar from "./components/Sidebar";
-import Header from "./components/Header";
-import './News.css';
+import React, { useEffect, useState } from 'react';
+import './Vehicles.css'; 
+import Header from './components/Header';
+import Footer from './components/Footer';
+import Sidebar from './components/Sidebar';
 
-const News = () => {
-return (
-    <div className="main">
-        <Header />
-    <div className="wrapper">
-    <Sidebar />
-    <div class="news-block">
-        <div class="news-item">
-            <a href="news1.html">Заголовок новости 1</a>
-            <p>Краткое описание первой новости...</p>
-            <span class="date">05.11.2024</span>
+
+const Vehicle = () => {
+  const [news, setNews] = useState([]);
+  const [loading, setLoading] = useState(true);
+
+
+
+  const fetchNews = async () => {
+    try {
+      const response = await fetch('http://91.203.10.130:2783/portal/hs/ksapi/GETNEWS', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          auth: localStorage.getItem('jwtToken'),
+        }),
+      });
+      const data = await response.json();
+      setNews(data);
+      setLoading(false)
+    } catch (error) {
+      console.error('Ошибка при загрузке новостей:', error);
+    }
+  };
+
+  useEffect(() => {
+    fetchNews();
+  }, []);
+
+
+
+
+
+  return (
+    <div className="uppermain">
+      <div className="body">
+        <Sidebar />
+        <div className="main">
+          <Header />
+          <section className='news-section'>
+            <h2>Последние новости</h2>
+            {loading ? (
+              <p colSpan="3">Загрузка данных...</p>
+            ) : (
+              news.map(newsItem => (
+                <div className="news-item" key={newsItem.GUID}>
+                  <h3>{newsItem.Headline}</h3>
+                  <p>{newsItem.txt}</p>
+                  <span className='date'>{newsItem.dt}</span>
+                </div>
+              ))
+            )}
+          </section>
         </div>
-        <div class="news-item">
-            <a href="news2.html">Заголовок новости 2</a>
-            <p>Краткое описание второй новости...</p>
-            <span class="date">04.11.2024</span>
-        </div>
-    </div>
-  </div>
+      </div>
+      <Footer />
     </div>
   );
+};
 
-
-}
-
-export default News
+export default Vehicle;

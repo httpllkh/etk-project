@@ -1,14 +1,18 @@
 import React, { useState } from 'react';
+import './Model.css'; 
 
 const InvoiceModal = ({active, setActive}) => {
 
   const getInvoice = () => {
     fetch('http://91.203.10.130:2783/portal/hs/ksapi/getinvoice', {
-      method: 'GET',
+      method: 'POST',
       headers: {
-          // 'Authorization': `Bearer ${localStorage.getItem('jwtToken')}`, // добавляем токен в заголовок
           'Content-Type': 'application/json'
-      }
+      },
+      body: JSON.stringify({
+        auth: localStorage.getItem('jwtToken'),
+        summa: formData.code
+      })  
   }) 
     .then(response => response.arrayBuffer()) // Получаем данные как ArrayBuffer
     .then(buffer => {
@@ -61,7 +65,7 @@ const InvoiceModal = ({active, setActive}) => {
                     />
                   </div>
                   <div className="modal-buttons">
-                    <button type="button" onClick={handleSaveAndClose}>Отправить</button>
+                    <button className='btn' type="button" onClick={handleSaveAndClose}>Отправить</button>
                   </div>
                 </form>
               </div>

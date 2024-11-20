@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import './Model.css'; 
 
-const ActModal = ({active, setActive}) => {
+const EditModal = ({active, setActive, guidid, onVehicleUpdated}) => {
 
     const [formData, setFormData] = useState({
         code: '',
@@ -19,22 +19,40 @@ const ActModal = ({active, setActive}) => {
 
     const handleSubmit = () => {
         console.log('Сохраненные данные:', formData);
+      
       };
     
-      const handleSaveAndClose = () => {
+      const handleSaveAndClose = async () => {
+        await fetch('http://91.203.10.130:2783/portal/hs/ksapi/CORTS', {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            auth: localStorage.getItem('jwtToken'),
+            guid: guidid,
+            code: formData.code,
+            name: formData.name,
+            active: formData.active
+          })
+        })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data)
+        })
         handleSubmit();
-        setActive(false);
+        onVehicleUpdated(); // Вызов обновления списка
+        setActive(false); // Закрытие модального окна
       };
 
-    console.log(active)
     return(
             <div className="modal">
               <div className="modal-content">
                 <span className="close" onClick={() => setActive(false)}>&times;</span>
-                <h2>Получить акт сверки</h2>
+                <h2>Добавить ТС</h2>
                 <form className='form-modal'>
                   <div className='modal_input_form'>
-                    <label>Период от</label>
+                    <label>Госномер</label>
                     <input
                       type="text"
                       name="code"
@@ -43,7 +61,7 @@ const ActModal = ({active, setActive}) => {
                     />
                   </div>
                   <div className='modal_input_form'>
-                    <label>Период до</label>
+                    <label>Наименование</label>
                     <input
                       type="text"
                       name="name"
@@ -51,8 +69,20 @@ const ActModal = ({active, setActive}) => {
                       onChange={handleChange}
                     />
                   </div>
+                  <div>
+                    <label className='modal_checkbox'>
+                    Активен
+                      <input
+                        type="checkbox"
+                        name="active"
+                        checked={formData.active}
+                        onChange={handleChange}
+                      />
+
+                    </label>
+                  </div>
                   <div className="modal-buttons">
-                    <button className='btn' type="button" onClick={handleSaveAndClose}>Отправить</button>
+                    <button className='btn' type="button" onClick={handleSaveAndClose}>Записать</button>
                   </div>
                 </form>
               </div>
@@ -62,5 +92,5 @@ const ActModal = ({active, setActive}) => {
     )
 }
 
-export default ActModal
+export default EditModal
 
