@@ -19,7 +19,13 @@ const Vehicle = () => {
   const [actModalActive, setActModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
 
+
+
+  // edit
   const [currentGUID, setCurrentGUID] = useState(null);
+  const [currentCode, setCurrentCode] = useState(null)
+  const [currentName, setCurrentName] = useState(null)
+  const [currentActive, setCurrentActive] = useState(null)
 
   const fetchVehicles = async () => {
     setLoading(true);
@@ -63,8 +69,11 @@ const Vehicle = () => {
 
   const openAddModal = () => setAddModalActive(true);
 
-  const editTs = (guid) => {
+  const editTs = (guid, code, name, active) => {
     setCurrentGUID(guid);
+    setCurrentCode(code)
+    setCurrentName(name)
+    setCurrentActive(active)
     setEditModalActive(true);
   };
 
@@ -117,7 +126,7 @@ const Vehicle = () => {
                       <td>{vehicle.name}</td>
                       <td>{vehicle.active ? 'Активен' : 'Отключен'}</td>
                       <td>
-                        <button className='btn' onClick={() => editTs(vehicle.GUID)}>Редактировать</button>
+                        <button className='btn' onClick={() => editTs(vehicle.GUID, vehicle.gosnumber, vehicle.name, vehicle.active)}>Редактировать</button>
                       </td>
                     </tr>
                   ))
@@ -126,7 +135,7 @@ const Vehicle = () => {
             </table>
           </section>
           {editModalActive && (
-            <EditModal active={editModalActive} setActive={setEditModalActive} guidid={currentGUID}   onVehicleUpdated={fetchVehicles}  />
+            <EditModal active={editModalActive} setActive={setEditModalActive} guidid={currentGUID}   onVehicleUpdated={fetchVehicles} codeProp={currentCode} nameProp={currentName} activeProp={currentActive}/>
           )}
           {addModalActive && (
             <AddModal active={addModalActive} setActive={setAddModalActive} onVehicleAdded={fetchVehicles} />

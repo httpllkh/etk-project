@@ -27,3 +27,120 @@ header {
   background-color: var(--primary-color-hover);
   transform: scale(1.1); /* Лёгкое увеличение при наведении */
 }
+
+
+/* код для настройки */
+/* Начальное скрытое состояние панели */
+/* Основной контейнер панели */
+.settings-panel {
+  position: fixed;
+  top: 10%;
+  right: 10%;
+  width: 400px;
+  background-color: #2c2f33;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+  padding: 20px;
+  box-sizing: border-box;
+  color: #fff;
+  z-index: 100;
+}
+
+/* Заголовки */
+.settings-header,
+.settings-section-header {
+  font-size: 18px;
+  font-weight: bold;
+  margin-bottom: 20px;
+}
+
+/* Группа настроек */
+.settings-group {
+  margin-bottom: 20px;
+}
+
+/* Элемент настройки */
+.settings-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 10px 0;
+  border-bottom: 1px solid #42454a;
+}
+
+.settings-label {
+  font-size: 14px;
+  font-weight: bold;
+}
+
+.settings-value {
+  flex: 1;
+  margin: 0 10px;
+  font-size: 14px;
+  color: #dcdde1;
+}
+
+/* Кнопка действия */
+.settings-action {
+  background-color: #4f545c;
+  color: #fff;
+  border: none;
+  padding: 5px 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s;
+}
+
+.settings-action:hover {
+  background-color: #3b4046;
+}
+
+/* Кнопка для смены пароля */
+.change-password-btn {
+  width: 100%;
+  padding: 10px;
+  background-color: #5865f2;
+  color: #fff;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.change-password-btn:hover {
+  background-color: #4752c4;
+}
+
+/* Ссылка (показать/скрыть email) */
+.settings-link {
+  color: #5865f2;
+  margin-left: 5px;
+  cursor: pointer;
+  font-size: 12px;
+  text-decoration: underline;
+}
+
+.settings-link:hover {
+  color: #4752c4;
+}
+
+/* Кнопка закрытия */
+.settings-close-btn {
+  background-color: #f04747;
+  color: #fff;
+  border: none;
+  padding: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  margin-top: 20px;
+  width: 100%;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.settings-close-btn:hover {
+  background-color: #d13636;
+}
+
+

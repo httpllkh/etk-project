@@ -1,0 +1,36 @@
+.toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px; /* Перемещаем уведомление в правую часть экрана */
+    background-color: green;
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+    z-index: 1000;
+    opacity: 0;
+    animation: toast-show 0.5s forwards, toast-hide 0.5s 2.5s forwards; /* Анимации */
+  }
+  
+  @keyframes toast-show {
+    0% {
+      opacity: 0;
+      transform: translateX(100%); /* Начинаем справа */
+    }
+    100% {
+      opacity: 1;
+      transform: translateX(0); /* Заканчиваем на месте */
+    }
+  }
+  
+  @keyframes toast-hide {
+    0% {
+      opacity: 1;
+      transform: translateX(0);
+    }
+    100% {
+      opacity: 0;
+      transform: translateX(100%); /* Убираем в правую сторону */
+    }
+  }
+  

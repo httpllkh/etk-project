@@ -1,12 +1,12 @@
 import React, { useState } from 'react';
 import './Model.css'; 
 
-const EditModal = ({active, setActive, guidid, onVehicleUpdated}) => {
+const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameProp, activeProp}) => {
 
     const [formData, setFormData] = useState({
-        code: '',
-        name: '',
-        active: false,
+        code: codeProp,
+        name: nameProp,
+        active: activeProp,
       });
 
       const handleChange = (e) => {
@@ -49,7 +49,7 @@ const EditModal = ({active, setActive, guidid, onVehicleUpdated}) => {
             <div className="modal">
               <div className="modal-content">
                 <span className="close" onClick={() => setActive(false)}>&times;</span>
-                <h2>Добавить ТС</h2>
+                <h2>Изменить ТС</h2>
                 <form className='form-modal'>
                   <div className='modal_input_form'>
                     <label>Госномер</label>

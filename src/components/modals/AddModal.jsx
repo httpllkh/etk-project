@@ -5,7 +5,7 @@ const AddModal = ({ active, setActive, onVehicleAdded }) => {
   const [formData, setFormData] = useState({
     code: '',
     name: '',
-    active: false,
+    active: true,
   });
 
   const handleChange = (e) => {

@@ -6,7 +6,7 @@ const Footer = () => {
     <footer className="footer">
       <div className="footer-section">
         <h3>E-MAIL</h3>
-        <p>ko@rp-strj.ru</p>
+        <p>etknv86@mail.ru</p>
       </div>
       <div className="footer-section">
         <h3>ТЕЛЕФОН</h3>

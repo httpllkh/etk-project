@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { useAuth } from './AuthContext';
 import './Auth.css';
 import Footer from './components/Footer';
+import Toast from './components/modals/Toast';
 
 const Auth = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -20,6 +21,9 @@ const Auth = () => {
     const [regNumber, setRegNumber] = useState('');
     const navigate = useNavigate();
     const { login } = useAuth();
+
+    // Toast component
+    const [showToast, setShowToast] = useState(false);
 
     const handleRegOpenModal = () => {
         setIsRegModalOpen(true);
@@ -39,6 +43,10 @@ const Auth = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
+
+
+
+
 
         try {
             const loginData = {
@@ -62,13 +70,14 @@ const Auth = () => {
                 console.log('Авторизация успешна, токен сохранён', data.accessToken);
 
                 // Устанавливаем авторизацию и перенаправляем
-                login();
+                login(); 
                 navigate('/vehicle');
             } else {
-                // Если токен не получен
+                    // Если токен не получен
                 setErrorMessage('Неверный логин или пароль');
             }
         } catch (error) {
+                        
             console.error('Ошибка при авторизации:', error);
             setErrorMessage('Ошибка при авторизации');
         }
@@ -92,19 +101,24 @@ const Auth = () => {
             .then((response) => response.json())
             .then((data) => {
                 console.log('Успех', data);
+                setShowToast(true);
+                setIsRegModalOpen(false)
             })
             .catch((error) => {
                 console.error('Ошибка при загрузке данных:', error);
             });
+
     };
 
     return (
         <div className="uppercontainer">
             <div className="container">
                 <div>
-                    <h1>ООО “Ермаковская Транспортная Компания”</h1>
-                    <button className="btn" onClick={handleOpenModal}>Вход</button>
-                    <button className="btn" onClick={handleRegOpenModal}>Заявка на регистрацию</button>
+                <h1>ООО “Ермаковская Транспортная Компания”</h1>
+                    <div className='auth-btn'>
+                        <button className="btn" onClick={handleOpenModal}>Вход</button>
+                        <button className="btn" onClick={handleRegOpenModal}>Заявка на регистрацию</button>
+                    </div>
                 </div>
 
                 {isLoginModalOpen && (
@@ -207,6 +221,8 @@ const Auth = () => {
                         </div>
                     </div>
                 )}
+
+            {showToast && <Toast message="Данные успешно отправлены!" onClose={() => setShowToast(false)} />}
             </div>
             <Footer />
         </div>
