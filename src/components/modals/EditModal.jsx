@@ -1,7 +1,10 @@
 import React, { useState } from 'react';
 import './Model.css'; 
 
-const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameProp, activeProp}) => {
+const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameProp, activeProp, setErrorToast, setErrorToastContent}) => {
+
+    // Toast component
+
 
     const [formData, setFormData] = useState({
         code: codeProp,
@@ -18,8 +21,9 @@ const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameP
       };
 
     const handleSubmit = () => {
-        console.log('Сохраненные данные:', formData);
+
       
+        console.log('Сохраненные данные:', formData);
       };
     
       const handleSaveAndClose = async () => {
@@ -38,8 +42,13 @@ const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameP
         })
         .then(response => response.json())
         .then(data => {
-          console.log(data)
-        })
+          console.log(data, "aaa")
+          setErrorToastContent(data)
+          setErrorToast(true)
+        }).catch(error => {
+          console.error('Ошибка при запросе:', error);
+
+        });
         handleSubmit();
         onVehicleUpdated(); // Вызов обновления списка
         setActive(false); // Закрытие модального окна
@@ -81,9 +90,11 @@ const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameP
 
                     </label>
                   </div>
+                  
                   <div className="modal-buttons">
                     <button className='btn' type="button" onClick={handleSaveAndClose}>Записать</button>
                   </div>
+                  
                 </form>
               </div>
             </div>

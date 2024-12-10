@@ -5,12 +5,16 @@ import Vehicle from './Vehicle';
 import News from './News';
 import { AuthProvider } from './AuthContext';
 import ProtectedRoute from './ProtectedRoute';
+import Detail from './Detail';
+import RecoverPassword from './RecoverPass';
+import ChangePassword from './ChangePassword';
 
 const App = () => {
     return (
         <AuthProvider>
             <Routes>
                 <Route path="/" element={<Auth />} />
+                <Route path="/recoverpass" element={<RecoverPassword />} />
                 <Route
                     path="/vehicle"
                     element={
@@ -24,6 +28,22 @@ const App = () => {
                     element={
                         <ProtectedRoute>
                             <News />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/detail"
+                    element={
+                        <ProtectedRoute>
+                            <Detail />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/changepassword"
+                    element={
+                        <ProtectedRoute>
+                            <ChangePassword />
                         </ProtectedRoute>
                     }
                 />

@@ -3,11 +3,12 @@ import './Vehicles.css';
 import Header from './components/Header';
 import Footer from './components/Footer';
 import Sidebar from './components/Sidebar';
-
 import AddModal from './components/modals/AddModal';
 import InvoiceModal from './components/modals/InvoiceModal';
 import ActModal from './components/modals/ActModal';
 import EditModal from './components/modals/EditModal';
+
+import ErrorToast from './components/modals/ErrorToast';
 
 const Vehicle = () => {
   const [vehicles, setVehicles] = useState([]);
@@ -19,13 +20,17 @@ const Vehicle = () => {
   const [actModalActive, setActModalActive] = useState(false);
   const [editModalActive, setEditModalActive] = useState(false);
 
-
+  //toast
+  const [showErrorToast, setShowErrorToast] = useState(false)
+  const [errorToastContent, setErrorToastContent] = useState('')
 
   // edit
   const [currentGUID, setCurrentGUID] = useState(null);
   const [currentCode, setCurrentCode] = useState(null)
   const [currentName, setCurrentName] = useState(null)
   const [currentActive, setCurrentActive] = useState(null)
+
+
 
   const fetchVehicles = async () => {
     setLoading(true);
@@ -77,10 +82,56 @@ const Vehicle = () => {
     setEditModalActive(true);
   };
 
+
+
+  const toggleSwitch = async (guid, code, name, active) => {
+    await fetch('http://91.203.10.130:2783/portal/hs/ksapi/CORTS', {
+      method: 'POST',
+      headers: {
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify({
+        auth: localStorage.getItem('jwtToken'),
+        guid: guid,
+        code: code,
+        name: name,
+        active: !active,
+      }),
+    })
+      .then(response => {
+        if (response.status === 406) {
+          // Ошибка 406 - показываем ErrorToast
+          return response.json().then(data => {
+            setErrorToastContent(data);
+            setShowErrorToast(true);
+          });
+        }
+        return response.json();
+      })
+      .then(data => {
+        console.log(data)
+        // Обновляем только нужный элемент в vehicles, если ошибки нет
+        if (data == true) {
+          setVehicles(prevVehicles => 
+            prevVehicles.map(vehicle => 
+              vehicle.GUID === guid ? { ...vehicle, active: !active } : vehicle
+            )
+          );
+        }
+
+      })
+      .catch(error => {
+        console.error('Ошибка при переключении состояния:', error);
+      });
+  };
+  
+  
+  
+
   return (
     <div className="uppermain">
       <div className="body">
-        <Sidebar />
+        <Sidebar isVehicle={true} isNews={false} isDetail={false} />
         <div className="main">
           <Header />
           <section className='news-section'>
@@ -124,7 +175,10 @@ const Vehicle = () => {
                     <tr key={vehicle.GUID}>
                       <td>{vehicle.gosnumber}</td>
                       <td>{vehicle.name}</td>
-                      <td>{vehicle.active ? 'Активен' : 'Отключен'}</td>
+                      <td><div className={`toggle-switch ${vehicle.active ? 'on' : ''}`} onClick={() => {toggleSwitch(vehicle.GUID, vehicle.gosnumber, vehicle.name, vehicle.active)}}>
+                          <div className="toggle-knob"></div>
+                        </div>
+                      </td>
                       <td>
                         <button className='btn' onClick={() => editTs(vehicle.GUID, vehicle.gosnumber, vehicle.name, vehicle.active)}>Редактировать</button>
                       </td>
@@ -135,7 +189,7 @@ const Vehicle = () => {
             </table>
           </section>
           {editModalActive && (
-            <EditModal active={editModalActive} setActive={setEditModalActive} guidid={currentGUID}   onVehicleUpdated={fetchVehicles} codeProp={currentCode} nameProp={currentName} activeProp={currentActive}/>
+            <EditModal active={editModalActive} setActive={setEditModalActive} guidid={currentGUID}   onVehicleUpdated={fetchVehicles} codeProp={currentCode} nameProp={currentName} activeProp={currentActive} setErrorToast={setShowErrorToast} setErrorToastContent={setErrorToastContent}/>
           )}
           {addModalActive && (
             <AddModal active={addModalActive} setActive={setAddModalActive} onVehicleAdded={fetchVehicles} />
@@ -148,6 +202,7 @@ const Vehicle = () => {
           )}
         </div>
       </div>
+      {showErrorToast && <ErrorToast message={errorToastContent} onClose={() => setShowErrorToast(false)} />}
       <Footer />
     </div>
   );

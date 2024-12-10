@@ -15,6 +15,14 @@ body {
   gap: 30px;
 }
 
+.pass-recover {
+  color: #666666;
+}
+.pass-recover:hover {
+  color: #000000;
+}
+
+
 .container {
   text-align: center;
   background-image: url('./img/bk-image.png');

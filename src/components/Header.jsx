@@ -1,10 +1,11 @@
 import React, { useEffect, useState } from 'react';
+import { NavLink } from 'react-router-dom';
 import './Header.css';
 
 const Header = () => {
   const [balance, setBalance] = useState("")
   const [agent, setAgent] = useState("")
-  const [isPasswordModalVisible, setPasswordModalVisible] = useState(false); // Состояние для отображения модального окна
+
 
   useEffect(() => {
     const fetchBalance = async () => {
@@ -55,10 +56,6 @@ const Header = () => {
   const togglePanel = () => {
     setIsVisible(!isVisible); // Переключаем видимость панели
   };
-  const handleChangePassword = () => {
-    alert('Открыть форму для смены пароля');
-    // Здесь можно реализовать логику смены пароля
-  };
 
   const toggleShowEmail = () => {
     setShowEmail(!showEmail);
@@ -66,7 +63,7 @@ const Header = () => {
   return (
     <header>
       <div className="user-info">
-        <span className='balance'>Баланс: {balance}</span>
+        <span className='balance'>Баланс: {balance} ₽</span>
         <span className='user-name'>{agent}</span>
       </div>
 
@@ -77,6 +74,7 @@ const Header = () => {
 
       {isVisible && (
         <div className="settings-panel">
+          <span className="close" onClick={togglePanel}>&times;</span>
           <h2 className="settings-header">Настройки профиля</h2>
           <div className="settings-group">
 
@@ -104,11 +102,9 @@ const Header = () => {
           </div>
 
           <h2 className="settings-section-header">Пароль и аутентификация</h2>
+          <NavLink to="/changepassword" >
           <button className="change-password-btn">Изменить пароль</button>
-
-          <button className="settings-close-btn" onClick={togglePanel}>
-            Закрыть
-          </button>
+          </NavLink>
         </div>
       )}
     </div>

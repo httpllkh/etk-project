@@ -4,12 +4,13 @@ header {
   align-items: center;
   margin-bottom: 20px;
   margin-top: 20px;
+  gap: 20px;
 }
 
 .user-info {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 25px;
 }
 
 .settings-btn {
@@ -37,13 +38,12 @@ header {
   top: 10%;
   right: 10%;
   width: 400px;
-  background-color: #2c2f33;
-  border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
   padding: 20px;
   box-sizing: border-box;
-  color: #fff;
   z-index: 100;
+  background-color: #fff;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
 
 /* Заголовки */
@@ -77,7 +77,6 @@ header {
   flex: 1;
   margin: 0 10px;
   font-size: 14px;
-  color: #dcdde1;
 }
 
 /* Кнопка действия */
@@ -99,7 +98,7 @@ header {
 .change-password-btn {
   width: 100%;
   padding: 10px;
-  background-color: #5865f2;
+  background-color: #3498db;
   color: #fff;
   border: none;
   border-radius: 5px;
@@ -109,7 +108,7 @@ header {
 }
 
 .change-password-btn:hover {
-  background-color: #4752c4;
+  background-color: #2980b9;
 }
 
 /* Ссылка (показать/скрыть email) */

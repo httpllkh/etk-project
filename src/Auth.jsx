@@ -4,6 +4,8 @@ import { useAuth } from './AuthContext';
 import './Auth.css';
 import Footer from './components/Footer';
 import Toast from './components/modals/Toast';
+import { NavLink } from 'react-router-dom';
+
 
 const Auth = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
@@ -43,10 +45,6 @@ const Auth = () => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-
-
-
-
 
         try {
             const loginData = {
@@ -147,6 +145,9 @@ const Auth = () => {
                                         required
                                     />
                                 </div>
+                                <NavLink to="/recoverpass">
+                                <p className='pass-recover'>Восстановить пароль</p>
+                                </NavLink>
                                 <button type="submit" className="submit-btn">Войти</button>
                             </form>
                             {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}

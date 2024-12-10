@@ -1,0 +1,101 @@
+/* Основной контейнер для страницы */
+.password-reset-page {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    background-image: url('./img/recover-bg.png');
+    margin: 0;
+  }
+  
+  /* Контейнер формы */
+  .password-reset-container {
+    width: 100%;
+    max-width: 400px;
+    padding: 30px;
+    background-color: #fff;
+    border-radius: 10px;
+    box-shadow: 0 6px 20px rgba(0, 0, 0, 0.1);
+    text-align: center;
+  }
+  
+  /* Заголовок */
+  .password-reset-container h2 {
+    font-size: 28px;
+    color: #333;
+    margin-bottom: 30px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Поля формы */
+  .password-reset-container label {
+    font-size: 16px;
+    color: #555;
+    margin-bottom: 10px;
+    display: block;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  /* Поле ввода */
+  .password-reset-container input[type="email"] {
+    padding: 12px;
+    margin-bottom: 20px;
+    font-size: 16px;
+    border: 2px solid #ccc;
+    border-radius: 5px;
+    outline: none;
+    transition: border-color 0.3s ease;
+  }
+  
+  .password-reset-container input[type="email"]:focus {
+    border-color: #4A90E2;
+  }
+  
+  /* Кнопка */
+  .password-reset-container button {
+    width: 100%;
+    padding: 14px;
+    font-size: 16px;
+    background-color: #4A90E2;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-bottom: 15px;
+  }
+  
+  .password-reset-container button:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+  }
+  
+  .password-reset-container button:hover:enabled {
+    background-color: #357ABD;
+    transform: translateY(-2px);
+  }
+  
+  /* Сообщения об ошибке или успехе */
+  .password-reset-container p {
+    font-size: 14px;
+    color: #333;
+    margin-top: 20px;
+    font-family: 'Arial', sans-serif;
+  }
+  
+  .password-reset-container p.success {
+    color: #4A90E2;
+  }
+  
+  .password-reset-container p.error {
+    color: #e74c3c;
+  }
+
+  .recover-input {
+    width: 370px;
+    padding: 0px;
+  }
+
+  .recover-button {
+    margin: 0px;
+  }

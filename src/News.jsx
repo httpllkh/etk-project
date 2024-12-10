@@ -39,7 +39,7 @@ const Vehicle = () => {
   return (
     <div className="uppermain">
       <div className="body">
-        <Sidebar />
+        <Sidebar isVehicle={false} isNews={true} isDetail={false}/>
         <div className="main">
           <Header />
           <section className='news-section'>

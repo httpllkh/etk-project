@@ -2,17 +2,20 @@ import React from 'react';
 import './Sidebar.css';
 import { NavLink } from 'react-router-dom';
 
-const Sidebar = () => {
+const Sidebar = ({isVehicle, isNews, isDetail}) => {
   return (
     <div className="sidebar">
       <h1>ООО "ЕТК"</h1>
       <nav>
         <ul>
-          <NavLink to="/vehicle" activeClassName="active">
-          <li><p className='active'>Мои ТС</p></li>
+          <NavLink to="/vehicle" >
+            <li><p className={isVehicle ? 'active' : ''}>Мои ТС</p></li>
           </NavLink>
-          <NavLink to="/news" activeClassName="active">
-          <li><p >Новости</p></li>
+          <NavLink to="/news">
+            <li><p className={isNews ? 'active' : ''}>Новости</p></li>
+          </NavLink>
+          <NavLink to="/detail">
+            <li><p className={isDetail ? 'active' : ''}>Детализация</p></li>
           </NavLink>
         </ul>
       </nav>
