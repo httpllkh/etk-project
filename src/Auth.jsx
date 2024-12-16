@@ -6,7 +6,6 @@ import Footer from './components/Footer';
 import Toast from './components/modals/Toast';
 import { NavLink } from 'react-router-dom';
 
-
 const Auth = () => {
     const [isLoginModalOpen, setIsLoginModalOpen] = useState(false);
     const [isRegModalOpen, setIsRegModalOpen] = useState(false);
@@ -26,6 +25,13 @@ const Auth = () => {
 
     // Toast component
     const [showToast, setShowToast] = useState(false);
+
+    // password show state
+    const [showPassword, setShowPassword] = useState(false);  // добавляем состояние для видимости пароля
+
+    const togglePasswordVisibility = () => {
+        setShowPassword(!showPassword);
+    };
 
     const handleRegOpenModal = () => {
         setIsRegModalOpen(true);
@@ -71,11 +77,10 @@ const Auth = () => {
                 login(); 
                 navigate('/vehicle');
             } else {
-                    // Если токен не получен
+                // Если токен не получен
                 setErrorMessage('Неверный логин или пароль');
             }
         } catch (error) {
-                        
             console.error('Ошибка при авторизации:', error);
             setErrorMessage('Ошибка при авторизации');
         }
@@ -112,7 +117,7 @@ const Auth = () => {
         <div className="uppercontainer">
             <div className="container">
                 <div>
-                <h1>ООО “Ермаковская Транспортная Компания”</h1>
+                    <h1>ООО “Ермаковская Транспортная Компания”</h1>
                     <div className='auth-btn'>
                         <button className="btn" onClick={handleOpenModal}>Вход</button>
                         <button className="btn" onClick={handleRegOpenModal}>Заявка на регистрацию</button>
@@ -137,16 +142,25 @@ const Auth = () => {
                                 </div>
                                 <div className="form-group">
                                     <label>Пароль:</label>
-                                    <input
-                                        type="password"
-                                        placeholder="Введите пароль"
-                                        value={password}
-                                        onChange={(e) => setPassword(e.target.value)}
-                                        required
-                                    />
+                                    <div className="password-input-container">
+                                        <input
+                                            type={showPassword ? 'text' : 'password'} // переключаем тип на 'text' или 'password'
+                                            placeholder="Введите пароль"
+                                            value={password}
+                                            onChange={(e) => setPassword(e.target.value)}
+                                            required
+                                        />
+                                        <button
+                                            type="button"
+                                            className="toggle-password-btn"
+                                            onClick={togglePasswordVisibility}
+                                        >
+                                            {showPassword ? <div className='show-pass'></div> : <div className='show-not-pass'></div>} {/* Иконки для переключения видимости */}
+                                        </button>
+                                    </div>
                                 </div>
-                                <NavLink to="/recoverpass">
-                                <p className='pass-recover'>Восстановить пароль</p>
+                                <NavLink to="/recoverpass" className="pass-recover-navlink">
+                                    <p className='pass-recover'>Восстановить пароль</p>
                                 </NavLink>
                                 <button type="submit" className="submit-btn">Войти</button>
                             </form>
@@ -223,7 +237,7 @@ const Auth = () => {
                     </div>
                 )}
 
-            {showToast && <Toast message="Данные успешно отправлены!" onClose={() => setShowToast(false)} />}
+                {showToast && <Toast message="Данные успешно отправлены!" onClose={() => setShowToast(false)} />}
             </div>
             <Footer />
         </div>

@@ -15,7 +15,12 @@ body {
   gap: 30px;
 }
 
+.pass-recover-navlink {
+  width: 250px;
+}
+
 .pass-recover {
+  width: 250px;
   color: #666666;
 }
 .pass-recover:hover {
@@ -154,4 +159,54 @@ button:hover {
 
 .submit-btn:hover {
   background-color: #6c6c6c;
+}
+
+
+/* pass show */
+
+.password-field {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+
+.password-input {
+  padding: 8px;
+  width: 200px;
+}
+
+
+.password-input-container {
+  position: relative;
+}
+
+.toggle-password-btn {
+  background-color: none;
+  box-shadow: none;
+  border: none;
+  position: absolute;
+  right: -30px;
+  top: 50%;
+  transform: translateY(-50%);
+  background: none;
+  border: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.toggle-password-btn:hover {
+  background-color: rgba(0, 0, 0, 0);
+}
+
+
+.show-pass {
+  background-image: url('./img/visibility.svg');
+  width: 25px;
+  height: 20px;
+}
+
+.show-not-pass {
+  background-image: url('./img/visibilityoff.svg');
+  width: 25px;
+  height: 20px;
 }
