@@ -117,12 +117,6 @@ const Header = () => {
               </div>
             </div>
 
-            <div className="settings-item">
-              <div className="settings-label">Номер телефона</div>
-              <div className="settings-value">
-                Вы ещё не указали номер телефона.
-              </div>
-            </div>
           </div>
 
           <h2 className="settings-section-header">Пароль и аутентификация</h2>
