@@ -35,7 +35,7 @@ const Vehicle = () => {
   const fetchVehicles = async () => {
     setLoading(true);
     try {
-      const response = await fetch('http://91.203.10.130:2783/portal/hs/ksapi/getTS', {
+      const response = await fetch('https://etk861c.ru:2784/portal/hs/ksapi/getTS', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -53,7 +53,7 @@ const Vehicle = () => {
 
   const fetchNews = async () => {
     try {
-      const response = await fetch('http://91.203.10.130:2783/portal/hs/ksapi/GETNEWS', {
+      const response = await fetch('https://etk861c.ru:2784/portal/hs/ksapi/GETNEWS', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -85,7 +85,7 @@ const Vehicle = () => {
 
 
   const toggleSwitch = async (guid, code, name, active) => {
-    await fetch('http://91.203.10.130:2783/portal/hs/ksapi/CORTS', {
+    await fetch('https://etk861c.ru:2784/portal/hs/ksapi/CORTS', {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
