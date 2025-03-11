@@ -27,7 +27,7 @@ const EditModal = ({active, setActive, guidid, onVehicleUpdated, codeProp, nameP
       };
     
       const handleSaveAndClose = async () => {
-        await fetch('http://91.203.10.130:2783/portal/hs/ksapi/CORTS', {
+        await fetch('https://etk861c.ru:2784/portal/hs/ksapi/CORTS', {
           method: 'POST',
           headers: {
             'Content-Type': 'application/json'
