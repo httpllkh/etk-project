@@ -58,7 +58,7 @@ const Auth = () => {
                 password: password,
             };
 
-            const response = await fetch('http://91.203.10.130:2783/portal/hs/ksapi/AUTH', {
+            const response = await fetch('https://etk861c.ru:2784/portal/hs/ksapi/AUTH', {
                 method: 'POST',
                 headers: {
                     'Content-Type': 'application/json',
@@ -87,7 +87,7 @@ const Auth = () => {
     };
 
     const regSubmit = async () => {
-        await fetch('http://91.203.10.130:2783/portal/hs/ksapi/NEWREG', {
+        await fetch('https://https://etk861c.ru:2784/portal/hs/ksapi/NEWREG', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
