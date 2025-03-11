@@ -10,7 +10,7 @@ const ActModal = ({active, setActive}) => {
     const [endDate, setEndDate] = useState('')
 
     const getAct = () => {
-      fetch('http://91.203.10.130:2783/portal/hs/ksapi/GETAKTSVERKI', {
+      fetch('https://etk861c.ru:2784/portal/hs/ksapi/GETAKTSVERKI', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
