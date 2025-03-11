@@ -10,7 +10,7 @@ const Header = () => {
 
   useEffect(() => {
     const fetchBalance = async () => {
-      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/getbalance', {
+      await fetch('https://etk861c.ru:2784/portal/hs/ksapi/getbalance', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -29,7 +29,7 @@ const Header = () => {
     }
 
     const fetchAgent = async () => {
-      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/getka', {
+      await fetch('https://etk861c.ru:2784/portal/hs/ksapi/getka', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
@@ -51,7 +51,7 @@ const Header = () => {
     }
 
     const fetchEmail = async () => {
-      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/getemail', {
+      await fetch('https://etk861c.ru:2784/portal/hs/ksapi/getemail', {
         method: 'POST',
         headers: {
             'Content-Type': 'application/json'
