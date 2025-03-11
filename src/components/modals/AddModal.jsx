@@ -18,7 +18,7 @@ const AddModal = ({ active, setActive, onVehicleAdded }) => {
 
   const handleSaveAndClose = async () => {
     try {
-      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/newts', {
+      await fetch('https://etk861c.ru:2784/portal/hs/ksapi/newts', {
         method: 'POST',
         headers: {
           'Content-Type': 'application/json'
