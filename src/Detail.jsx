@@ -19,7 +19,7 @@ const Detail = () => {
 useEffect(() => {
   const fetchDetail = async () => {
     try {
-      const response = await fetch('http://91.203.10.130:2783/portal/hs/ksapi/GETJURNAL', {
+      const response = await fetch('https://etk861c.ru:2784/portal/hs/ksapi/GETJURNAL', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
@@ -41,7 +41,7 @@ useEffect(() => {
 }, [])
 
   const getJournalFile = async () => {
-    await fetch('http://91.203.10.130:2783/portal/hs/ksapi/GETJURNALFILE', { 
+    await fetch('https://etk861c.ru:2784/portal/hs/ksapi/GETJURNALFILE', { 
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
