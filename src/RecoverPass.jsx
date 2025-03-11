@@ -19,7 +19,7 @@ const PasswordReset = () => {
 
     // Здесь будет ваш запрос на сервер
       // Пример запроса на сервер
-      await fetch('http://91.203.10.130:2783/portal/hs/ksapi/SENDPASSRECOVERY', {
+      await fetch('https://etk861c.ru:2784/portal/hs/ksapi/SENDPASSRECOVERY', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ email }),
