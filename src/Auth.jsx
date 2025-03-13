@@ -87,7 +87,7 @@ const Auth = () => {
     };
 
     const regSubmit = async () => {
-        await fetch('https://https://etk861c.ru:2784/portal/hs/ksapi/NEWREG', {
+        await fetch('https://etk861c.ru:2784/portal/hs/ksapi/NEWREG', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
